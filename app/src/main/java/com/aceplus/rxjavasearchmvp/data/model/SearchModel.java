@@ -3,11 +3,10 @@ package com.aceplus.rxjavasearchmvp.data.model;
 import com.aceplus.rxjavasearchmvp.data.vo.Contact;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -33,6 +32,7 @@ public class SearchModel extends BaseModel {
 
     public void searchData(String str, final GetDataCallback callback) {
         compositeDisposable.add(mApiService.getContacts(null, str)
+                .delay(300, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<List<Contact>>() {

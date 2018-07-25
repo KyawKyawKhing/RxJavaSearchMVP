@@ -6,8 +6,6 @@ import com.aceplus.rxjavasearchmvp.mvp.view.SearchView;
 
 import java.util.List;
 
-import io.reactivex.subjects.PublishSubject;
-
 /**
  * Created by kkk on 7/9/2018.
  */
@@ -21,7 +19,7 @@ public class SearchPresenter extends BasePresenter<SearchView> {
     }
 
 
-    public void searchData(PublishSubject<List<Contact>> contacts,String str) {
+    public void searchData(String str) {
         searchModel.searchData(str, new SearchModel.GetDataCallback() {
             @Override
             public void onSucceedSearch(List<Contact> contacts) {
